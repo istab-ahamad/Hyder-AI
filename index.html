@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hyder AI Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #111; color: #0ff; }
+        #chatbox { width: 400px; height: 500px; border: 2px solid #0ff; overflow-y: scroll; margin: auto; padding: 10px; background-color: #222; }
+        #input { width: 300px; padding: 5px; }
+        #send { padding: 5px; background-color: #0ff; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Hyder AI Chatbot</h1>
+    <div id="chatbox"></div>
+    <input type="text" id="input" placeholder="Ask me anything...">
+    <button id="send">Send</button>
+
+    <script>
+        const chatbox = document.getElementById("chatbox");
+        const input = document.getElementById("input");
+        const send = document.getElementById("send");
+
+        function botReply(userText) {
+            let response;
+            if (userText.toLowerCase().includes("hello")) {
+                response = "Hello! I am Hyder AI. How can I assist you today?";
+            } else if (userText.toLowerCase().includes("who are you")) {
+                response = "I am Hyder AI, your futuristic chatbot!";
+            } else {
+                response = "I'm still learning! Ask me something else.";
+            }
+            return response;
+        }
+
+        send.addEventListener("click", function() {
+            let userText = input.value;
+            if (userText.trim() === "") return;
+
+            let userDiv = `<div><b>You:</b> ${userText}</div>`;
+            let botDiv = `<div><b>Hyder AI:</b> ${botReply(userText)}</div>`;
+
+            chatbox.innerHTML += userDiv + botDiv;
+            chatbox.scrollTop = chatbox.scrollHeight;
+            input.value = "";
+        });
+    </script>
+</body>
+</html>
